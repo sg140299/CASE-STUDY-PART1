@@ -1,0 +1,15 @@
+import pandas as pd
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+df_start['StartupName'].replace('Olacabs','Ola',inplace=True)
+df_start['StartupName'].replace('Ola Cabs','Ola',inplace=True)
+df_start['StartupName'].replace('Flipkart.com','Flipkart',inplac
+df_start['StartupName'].replace('Paytm Marketplace','Paytm',inpl
+df_start['StartupName'].replace('Oyo Rooms','Oyo',inplace=True)
+df_start['StartupName'].replace('Oyorooms','Oyo',inplace=True)
+df_start['StartupName'].replace('OyoRooms','Oyo',inplace=True)
+df_start['StartupName'].replace('OYO Rooms','Oyo',inplace=True)
+start_round=df_start['StartupName'].value_counts()[0:5]
+startup=start_round.index
+fundround=start_round.values
+for i in range(len(startup)):
+ print(startup[i],fundround[i])
