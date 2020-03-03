@@ -1,0 +1,15 @@
+import pandas as pd
+import numpy as np
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+df_start['IndustryVertical'].replace('eCommerce','Ecommerce',inp
+df_start['IndustryVertical'].replace('ECommerce','Ecommerce',inp
+df_start['IndustryVertical'].replace('ecommerce','Ecommerce',inp
+## Converting "AmountInUSD" into numeric format
+df_start["AmountInUSD"] = df_start["AmountInUSD"].apply(lambda x
+df_start["AmountInUSD"] = pd.to_numeric(df_start["AmountInUSD"])
+industry_amount=df_start.groupby('IndustryVertical')['AmountInUS
+industry=industry_amount.index
+amountIndustry=industry_amount.values
+perIndustry=np.true_divide(amountIndustry, amountIndustry.sum())
+for i in range(len(industry)):
+ print(industry[i],format(perIndustry[i],'.2f'))
