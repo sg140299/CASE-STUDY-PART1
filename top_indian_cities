@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+df_start['CityLocation'].dropna(inplace=True)
+def separateCity(city):
+ return city.split('/')[0].strip()
+df_start['CityLocation']=df_start['CityLocation'].apply(separate
+df_start['CityLocation'].replace("Delhi","New Delhi",inplace=Tru
+df_start['CityLocation'].replace("bangalore","Bangalore",inplace
+city_number=df_start['CityLocation'].value_counts()[0:10]
+city=city_number.index
+numCity=city_number.values
+for i in range(len(city)):
+ print(city[i],numCity[i])
