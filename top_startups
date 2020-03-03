@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+df_start['StartupName'].replace('Olacabs','Ola',inplace=True)
+df_start['StartupName'].replace('Ola Cabs','Ola',inplace=True)
+df_start['StartupName'].replace('Flipkart.com','Flipkart',inplac
+df_start['StartupName'].replace('Paytm Marketplace','Paytm',inpl
+df_start['StartupName'].replace('Oyo Rooms','Oyo',inplace=True)
+df_start['StartupName'].replace('Oyorooms','Oyo',inplace=True)
+df_start['StartupName'].replace('OyoRooms','Oyo',inplace=True)
+df_start['StartupName'].replace('OYO Rooms','Oyo',inplace=True)
+## Converting "AmountInUSD" into numeric format
+df_start["AmountInUSD"] = df_start["AmountInUSD"].apply(lambda x
+df_start["AmountInUSD"] = pd.to_numeric(df_start["AmountInUSD"])
+start_fund=df_start.groupby('StartupName')['AmountInUSD'].sum().
+startup=start_fund.index
+for i in startup:
+ print(i)
