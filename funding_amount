@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+df_start['CityLocation'].dropna(inplace=True)
+def separateCity(city):
+ return city.split('/')[0].strip()
+df_start['CityLocation']=df_start['CityLocation'].apply(separate
+df_start['CityLocation'].replace("Delhi","New Delhi",inplace=Tru
+df_start['CityLocation'].replace("bangalore","Bangalore",inplace
+## Converting "AmountInUSD" into numeric format
+df_start["AmountInUSD"] = df_start["AmountInUSD"].apply(lambda x
+df_start["AmountInUSD"] = pd.to_numeric(df_start["AmountInUSD"])
+city_amount=df_start.groupby('CityLocation')['AmountInUSD'].sum(
+city=city_amount.index
+amountCity=city_amount.values
+perAmount=np.true_divide(amountCity, amountCity.sum())*100
+for i in range(len(city)):
+ print(city[i],format(perAmount[i],'.2f'))
