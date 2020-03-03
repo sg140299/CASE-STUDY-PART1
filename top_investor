@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+df_start['InvestorsName'].dropna(inplace=True)
+def createDictionary(array):
+ dictionary={}
+ for i in array:
+ if ',' not in i:
+ if i in dictionary:
+ dictionary[i]=dictionary.get(i)+1
+ else:
+ dictionary[i]=1
+ else:
+ string=i.strip().split(',')
+ for j in string:
+ if j.strip() in dictionary:
+ dictionary[j.strip()]=dictionary.get(j.strip
+ else:
+ dictionary[j.strip()]=1
+ return dictionary
+dictionary=createDictionary(df_start['InvestorsName'])
+dataf=pd.DataFrame(list(dictionary.values()),list(dictionary.key
+dataf=dataf.sort_values(by=[0],ascending=False)
+print(dataf.index[0],dataf.values[0][0])
