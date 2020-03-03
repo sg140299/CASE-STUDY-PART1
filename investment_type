@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+df_start=pd.read_csv('startup_funding.csv',encoding='utf-8')
+## Correcting the InvestmentType
+df_start['InvestmentType'].replace('SeedFunding','Seed Funding',
+df_start['InvestmentType'].replace('PrivateEquity','Private Equi
+df_start['InvestmentType'].replace('Crowd funding','Crowd Fundin
+## Converting "AmountInUSD" into numeric format
+df_start["AmountInUSD"] = df_start["AmountInUSD"].apply(lambda x
+df_start["AmountInUSD"] = pd.to_numeric(df_start["AmountInUSD"])
+invest_amount=df_start.groupby('InvestmentType')['AmountInUSD'].
+invest=invest_amount.index
+amountInvest=invest_amount.values
+peramount=np.true_divide(amountInvest, amountInvest.sum())*100
+for i in range(len(invest)):
+ print(invest[i],format(peramount[i],'.2f'))
